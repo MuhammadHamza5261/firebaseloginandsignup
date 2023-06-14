@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebaseloginandsignup/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/firebase_bloc.dart';
+import '../bloc/firebase_event.dart';
 import '../colors/colors.dart';
 import 'firebase_signup.dart';
 import 'home_screen.dart';
@@ -26,25 +29,37 @@ class FireBaseLoginSTF extends StatefulWidget {
 }
 
 class _FireBaseLoginSTFState extends State<FireBaseLoginSTF> {
+
+
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+
+
+
+
   late double height;
   late double width;
+
+
   @override
   Widget build(BuildContext context) {
+
+
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
+
+
+
     return SafeArea(
       child: Center(
         child: Column(
           children: [
             Image.asset('assets/images/mascot_firebase-logo.png',width: 400,),
-            Container(
-              child: Text('Firebase Login',style: TextStyle(
-                  fontSize: 32.0,
-                  color: AppColors.pinkColor
-              ),),
-            ),
+            const Text('Firebase Login',style: TextStyle(
+                fontSize: 32.0,
+                color: AppColors.pinkColor
+            ),),
             const SizedBox(
               height: 20,
             ),
@@ -135,7 +150,12 @@ class _FireBaseLoginSTFState extends State<FireBaseLoginSTF> {
                     primary: AppColors.pinkColor
                 ),
                 onPressed: () async {
-                  await FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text, password: _passwordController.text).then((value) =>  Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeScreenSTL())) , onError: (e) => print(e.toString()));
+
+                  await FirebaseAuth.instance.signInWithEmailAndPassword
+                    (email: _emailController.text, password: _passwordController.text)
+                      .then((value) =>
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomeScreenSTL())) ,
+                      onError: (e) => debugPrint(e.toString()));
                 },
                 child: const Text('Login',
                   style: TextStyle(
@@ -155,7 +175,6 @@ class _FireBaseLoginSTFState extends State<FireBaseLoginSTF> {
                  style: TextStyle(
                    fontSize: 23.0,
                    color: Colors.white,
-
                  ),
                ),
            ),

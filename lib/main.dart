@@ -5,17 +5,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'bloc/firebase_bloc.dart';
+
 
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   //add firebase in flutter project
  await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(
+      MultiBlocProvider(
+          providers: [
+            BlocProvider<FireBaseBloc>(create: (context) => FireBaseBloc()),
+          ],
+          child: MyApp(),
+      ));
 
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,17 +41,20 @@ class MyApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatefulWidget {
+
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     super.initState();
     Timer(Duration(seconds: 1), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const FireBaseLoginSTL()),
+        MaterialPageRoute(builder: (context) => const FireBaseLogin()),
       );
     });
   }
