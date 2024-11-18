@@ -7,7 +7,9 @@ class ResourceInProgressState  extends FireBaseState {}
 class ResourceDataIsLoadedState  extends FireBaseState {}
 
 class SignupFailure extends FireBaseState {
-  final String errorMessage;
 
+  final String errorMessage;
   SignupFailure(this.errorMessage);
+
+
 }
