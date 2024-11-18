@@ -1,5 +1,6 @@
-import 'package:firebaseloginandsignup/main.dart';
 import 'package:flutter/material.dart';
+
+
 class HomeScreenSTL extends StatelessWidget {
   const HomeScreenSTL({Key? key}) : super(key: key);
 
@@ -19,12 +20,11 @@ class HomeScreenSTF extends StatefulWidget {
 }
 
 class _HomeScreenSTFState extends State<HomeScreenSTF> {
-  late double width;
-  late double height;
+
   @override
   Widget build(BuildContext context) {
-    width = MediaQuery.of(context).size.width;
-    height = MediaQuery.of(context).size.height;
+   var  width = MediaQuery.of(context).size.width;
+   var  height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Column(),
     );

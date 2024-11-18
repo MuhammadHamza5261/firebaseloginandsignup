@@ -21,7 +21,7 @@ void main() async {
           providers: [
             BlocProvider<FireBaseBloc>(create: (context) => FireBaseBloc()),
           ],
-          child: MyApp(),
+          child: const MyApp(),
       ));
 
 }
